@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Task } from './task';
 
 @Component({
   selector: 'app-root',
@@ -31,6 +32,10 @@ export class AppComponent {
       description,
       done: false
     });
+  }
+
+  remove(task: Task){
+    this.allTasks.splice(this.allTasks.indexOf(task), 1);
   }
 
 }

@@ -7,4 +7,30 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AgenDaz';
+
+  filter: 'all' | 'active' | 'done' = 'all';
+
+  allTasks = [
+    {description: 'eat', done: true},
+    {description: 'sleep', done: false},
+    {description: 'play', done: false},
+    {description: 'laugh', done: false},
+  ];
+
+  get tasks() {
+    if(this.filter === 'all') {
+      return this.allTasks;
+    }
+    return this.allTasks.filter(
+      (task) => this.filter === 'done'?  task.done : !task.done
+      );
+  }
+
+  addTask(description: string) {
+    this.allTasks.push({
+      description,
+      done: false
+    });
+  }
+
 }

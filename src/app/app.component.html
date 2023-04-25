@@ -1,2 +1,18 @@
-<app-hello-world></app-hello-world>
-<router-outlet></router-outlet>
+<div class="main">
+  <h1>AgenDaZ</h1>
+  <label for="addTaskInput">What would you like to do today?</label>
+
+<input
+  #newTask
+  placeholder="add a task"
+  (keyup.enter)="addTask(newTask.value); newTask.value = ''"
+  class="lg-text-input"
+  id="addTaskInput" />
+
+<button class="btn-primary" (click)="addTask(newTask.value)">Add</button>
+
+
+  <ul>
+    <li *ngFor="let task of tasks">{{task.description}}</li>
+  </ul>
+</div>

@@ -27,17 +27,10 @@
       To Do
     </button>
 
-    <!-- <button
-      class="btn btn-menu"
-      [class.active]="storedTasks.clear()"
-      (click)="filter = 'done'">
-      Done
-    </button> -->
-
     <button
       class="btn btn-menu"
       (click)="filter = 'done'">
-      Clear all
+      Done
     </button>
   </div>
 
@@ -46,7 +39,7 @@
 
   <ul>
     <li *ngFor="let i of tasks">
-      <app-task (remove)="remove(i)" [task]="i"></app-task>
+      <app-task (remove)="remove(i)" (switch_done)="switch_done(i)" [task]="i"></app-task>
     </li>
   </ul>
 

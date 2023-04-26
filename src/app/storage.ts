@@ -21,24 +21,56 @@ export class Storage {
     localStorage.setItem('test_false','false');
 
 
-    let all_stored_tasks = new Array<Task>();
+    // Create an instance of a db object for us to store the open database in
+    let db;
 
-    for(var key in localStorage){
-      console.log(key);
-      if(key === 'task'){
-        let value = localStorage.getItem(key)!;
-        let done = false;
-        if(localStorage.getItem(value) === 'true'){
-          done = true;
+    // Open our database; it is created if it doesn't already exist
+    // (see the upgradeneeded handler below)
+    const openRequest = window.indexedDB.open("tasks_db", 1);
+
+    // error handler signifies that the database didn't open successfully
+    openRequest.addEventListener("error", () =>
+    console.error("Database failed to open")
+    );
+
+    // success handler signifies that the database opened successfully
+    openRequest.addEventListener("success", () => {
+      console.log("Database opened successfully");
+
+      // Store the opened database object in the db variable. This is used a lot below
+      db = openRequest.result;
+
+      // Run the displayData() function to display the notes already in the IDB
+      displayData();
         }
-        all_stored_tasks.push({description: value, done: done})
-      }
-    }
-    return all_stored_tasks
+    );
+
+    // Set up the database tables if this has not already been done
+    openRequest.addEventListener("upgradeneeded", (e) => {
+      // Grab a reference to the opened database
+      db = e.target.result;
+
+      // Create an objectStore in our database to store notes and an auto-incrementing key
+      // An objectStore is similar to a 'table' in a relational database
+      const objectStore = db.createObjectStore("tasks_os", {
+        keyPath: "id",
+        autoIncrement: true,
+      });
+
+      // Define what data items the objectStore will contain
+      objectStore.createIndex("description", "description", { unique: false });
+      objectStore.createIndex("done", "done", { unique: false });
+
+      console.log("Database setup complete");
+    });
+
   }
 
   // public clear(){
   //   localStorage.clear();
   // }
 
+}
+function displayData() {
+  throw new Error('Function not implemented.');
 }

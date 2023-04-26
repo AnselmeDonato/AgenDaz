@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Task } from './task';
+import { Storage } from './storage';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,8 @@ export class AppComponent {
 
   filter: 'all' | 'active' | 'done' = 'all';
 
+  storedTasks = new Storage();
+
   allTasks = [
     {description: 'eat', done: true},
     {description: 'sleep', done: false},
@@ -19,6 +22,8 @@ export class AppComponent {
   ];
 
   get tasks() {
+    let allStoredTasks = this.storedTasks.get_all();
+    console.log(allStoredTasks);
     if(this.filter === 'all') {
       return this.allTasks;
     }

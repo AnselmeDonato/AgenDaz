@@ -27,11 +27,17 @@
       To Do
     </button>
 
-    <button
+    <!-- <button
       class="btn btn-menu"
-      [class.active]="filter == 'done'"
+      [class.active]="storedTasks.clear()"
       (click)="filter = 'done'">
       Done
+    </button> -->
+
+    <button
+      class="btn btn-menu"
+      (click)="filter = 'done'">
+      Clear all
     </button>
   </div>
 

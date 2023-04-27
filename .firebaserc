@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "agendazdeploy"
-  }
+    "default": "agendazdeploy",
+    "prod": "agendazdeploy",
+    "agendazdeploy": "agendazdeploy"
+  },
+  "targets": {},
+  "etags": {}
 }

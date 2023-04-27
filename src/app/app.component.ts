@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Task } from './task';
+import { Storage } from './storage';
 
 @Component({
   selector: 'app-root',
@@ -11,31 +12,28 @@ export class AppComponent {
 
   filter: 'all' | 'active' | 'done' = 'all';
 
-  allTasks = [
-    {description: 'eat', done: true},
-    {description: 'sleep', done: false},
-    {description: 'play', done: false},
-    {description: 'laugh', done: false},
-  ];
+  storedTasks = new Storage();
 
   get tasks() {
+    let allStoredTasks = this.storedTasks.get_all();
     if(this.filter === 'all') {
-      return this.allTasks;
+      return allStoredTasks;
     }
-    return this.allTasks.filter(
+    return allStoredTasks.filter(
       (task) => this.filter === 'done'?  task.done : !task.done
       );
   }
 
   addTask(description: string) {
-    this.allTasks.push({
-      description,
-      done: false
-    });
+    this.storedTasks.add(description)
   }
 
   remove(task: Task){
-    this.allTasks.splice(this.allTasks.indexOf(task), 1);
+    this.storedTasks.delete(task.description);
+  }
+
+  switch_done(task: Task){
+    this.storedTasks.switch_done(task.description);
   }
 
 }

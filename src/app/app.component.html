@@ -29,7 +29,6 @@
 
     <button
       class="btn btn-menu"
-      [class.active]="filter == 'done'"
       (click)="filter = 'done'">
       Done
     </button>
@@ -40,7 +39,7 @@
 
   <ul>
     <li *ngFor="let i of tasks">
-      <app-task (remove)="remove(i)" [task]="i"></app-task>
+      <app-task (remove)="remove(i)" (switch_done)="switch_done(i)" [task]="i"></app-task>
     </li>
   </ul>
 

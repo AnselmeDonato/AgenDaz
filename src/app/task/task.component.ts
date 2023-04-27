@@ -12,7 +12,9 @@ export class TaskComponent {
   editable = false;
 
   @Input() task!: Task;
+  @Output() edit = new EventEmitter<Task>();
   @Output() remove = new EventEmitter<Task>();
+  @Output() switch_done = new EventEmitter<Task>();
 
   saveTask(description: string) {
     if (!description) return;

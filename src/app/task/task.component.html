@@ -1,6 +1,6 @@
 <div class="task">
 
-  <input [id]="task.description" type="checkbox" (change)="task.done = !task.done" [checked]="task.done" />
+  <input [id]="task.description" type="checkbox" (change)="switch_done.emit()" [checked]="task.done" />
   <label [for]="task.description">{{task.description}}</label>
 
   <div class="btn-wrapper" *ngIf="!editable">

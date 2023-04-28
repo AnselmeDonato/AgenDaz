@@ -21,25 +21,17 @@ describe('AppComponent', () => {
 		expect(app).toBeTruthy();
 	});
 
-	// it('should have as title [AgenDaz]', () => {
-	// 	const fixture = TestBed.createComponent(AppComponent);
-	// 	const app = fixture.componentInstance;
-	// 	expect(app.title).toEqual('AgenDaz');
-	// });
+	it('should have as title [AgenDaz]', () => {
+		const fixture = TestBed.createComponent(AppComponent);
+		const app = fixture.componentInstance;
+		expect(app.title).toEqual('AgenDaz');
+	});
 
-  // This one is a legacy test, it should not pass now
-	// it('should render title', () => {
-	// 	const fixture = TestBed.createComponent(AppComponent);
-	// 	fixture.detectChanges();
-	// 	const compiled = fixture.nativeElement as HTMLElement;
-	// 	expect(compiled.querySelector('.content span')?.textContent).toContain('AgenDaz app is running!');
-	// });
-
-  // describe('With testing library', () => {
-  //   it('should have AgenDaz header', async () => {
-  //     await render(AppComponent);
-  //     const header = screen.getByRole('heading', { name: 'AgenDaz'});
-  //     expect(header).toBeTruthy();
-  //   })
-  // })
+  describe('With testing library', () => {
+    it('should have AgenDaz header', async () => {
+      await render(AppComponent);
+      const header = screen.getByRole('heading', { name: 'AgenDaZ'});
+      expect(header).toBeTruthy();
+    })
+  })
 });

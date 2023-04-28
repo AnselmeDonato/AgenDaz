@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render, screen } from '@testing-library/angular';
 
 import { TaskComponent } from './task.component';
 
@@ -17,7 +18,16 @@ describe('TaskComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).not.toBeTruthy();
-  });
+  // it('should create', () => {
+  //   expect(component).not.toBeTruthy();
+  // });
+
+  describe('With testing library', () => {
+    it('should have [test] description', async () => {
+      await render(TaskComponent);
+      const description = screen.getByLabelText('test');
+      expect(description).toBeTruthy();
+    })
+  })
+
 });

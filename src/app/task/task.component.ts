@@ -10,7 +10,6 @@ import { Task } from "../task";
 export class TaskComponent {
 
   editable = false;
-  description = "";
 
   @Input() task!: Task;
   @Output() edit = new EventEmitter<Task>();

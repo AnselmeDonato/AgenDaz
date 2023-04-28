@@ -10,6 +10,7 @@ import { Task } from "../task";
 export class TaskComponent {
 
   editable = false;
+  description = "";
 
   @Input() task!: Task;
   @Output() edit = new EventEmitter<Task>();
@@ -17,9 +18,11 @@ export class TaskComponent {
   @Output() switch_done = new EventEmitter<Task>();
 
   saveTask(description: string) {
-    if (!description) return;
-    this.editable = false;
-    this.task.description = description;
+    //TODO with the LocalStorage
+
+    // if (!description) return;
+    // this.editable = false;
+    // this.task.description = description;
   }
 
 }

@@ -1,21 +1,23 @@
 <div class="task">
 
-  <input [id]="task.description" type="checkbox" (change)="switch_done.emit()" [checked]="task.done" />
-  <label [for]="task.description">{{task.description}}</label>
+  <div *ngIf="task">
+    <input [id]="task.description" type="checkbox" (change)="switch_done.emit()" [checked]="task.done" />
+    <label [for]="task.description">{{task.description}}</label>
 
-  <div class="btn-wrapper" *ngIf="!editable">
-    <button class="btn" (click)="editable = !editable">Edit</button>
-    <button class="btn btn-warn" (click)="remove.emit()">Delete</button>
-  </div>
-
-  <!-- This section shows only if user clicks Edit button -->
-  <div *ngIf="editable">
-    <input class="sm-text-input" placeholder="edit task" [value]="task.description" #editedTask (keyup.enter)="saveTask(editedTask.value)">
-
-    <div class="btn-wrapper">
-      <button class="btn" (click)="editable = !editable">Cancel</button>
-      <button class="btn btn-save" (click)="saveTask(editedTask.value)">Save</button>
+    <div class="btn-wrapper" *ngIf="!editable">
+      <!-- <button class="btn" (click)="editable = !editable">Edit</button> -->
+      <button class="btn btn-warn" (click)="remove.emit()">Delete</button>
     </div>
+
+    <!-- This section shows only if user clicks Edit button -->
+    <!-- <div *ngIf="editable">
+      <input class="sm-text-input" placeholder="edit task" [value]="task.description" #editedTask (keyup.enter)="saveTask(editedTask.value)">
+
+      <div class="btn-wrapper">
+        <button class="btn" (click)="editable = !editable">Cancel</button>
+        <button class="btn btn-save" (click)="saveTask(editedTask.value)">Save</button>
+      </div>
+    </div> -->
   </div>
 
 </div>

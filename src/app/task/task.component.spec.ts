@@ -1,23 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render, screen } from '@testing-library/angular';
 
 import { TaskComponent } from './task.component';
 
+const test_task_name = 'test_task';
+
 describe('TaskComponent', () => {
-  let component: TaskComponent;
-  let fixture: ComponentFixture<TaskComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ TaskComponent ]
+  it('should render test task', async () => {
+    await render(TaskComponent, {
+      componentProperties: {task: {description: test_task_name, done: false}}
     })
-    .compileComponents();
 
-    fixture = TestBed.createComponent(TaskComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    expect(screen.getByText(test_task_name)).toBeTruthy()
+  })
 });

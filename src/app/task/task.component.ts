@@ -12,16 +12,16 @@ export class TaskComponent {
   editable = false;
 
   @Input() task!: Task;
-  @Output() edit = new EventEmitter<Task>();
+  // @Output() edit = new EventEmitter<Task>();
   @Output() remove = new EventEmitter<Task>();
   @Output() switch_done = new EventEmitter<Task>();
 
-  saveTask(description: string) {
+  // saveTask(description: string) {
     //TODO with the LocalStorage
 
     // if (!description) return;
     // this.editable = false;
     // this.task.description = description;
-  }
+  // }
 
 }
